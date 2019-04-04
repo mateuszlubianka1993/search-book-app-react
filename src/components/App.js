@@ -3,10 +3,19 @@ import SearchBar from './SearchBar';
 
 class App extends React.Component {
 
+    state = {
+        term: '',
+    }
+
+    onInputChange = (e) => {
+        // console.log(e.target.value);
+        this.setState({ term: e.target.value });
+    };
+
     render () {
         return (
             <div className="app-container">
-                <SearchBar />
+                <SearchBar onInputChange={this.onInputChange}/>
             </div>
         )
     }

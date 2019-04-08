@@ -1,11 +1,12 @@
 import React from 'react';
 import SearchBar from './SearchBar';
+import BookList from './BookList';
 
 class App extends React.Component {
 
     state = {
         term: '',
-        booksx: [],
+        books: [],
         error: false,
     }
 
@@ -16,7 +17,7 @@ class App extends React.Component {
 
     onFormSubmit = (e) => {
         e.preventDefault();
-        const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${this.state.term}`;
+        const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${this.state.term}+intitle:${this.state.term}&filter=partial`;
     
       fetch(apiUrl)
         .then(response => {
@@ -28,20 +29,21 @@ class App extends React.Component {
         .then(response => response.json())
         .then(result => {
           this.setState({
-           booksx: result.items,
+           books: result.items,
           });
         })
         .catch(err => {
           this.setState({error: true})
         })
-        console.log(this.state.booksx);
-        }
+        console.log(this.state.books);
+      }
 
     
     render () {
         return (
             <div className="app-container">
                 <SearchBar onInputChange={this.onInputChange} onFormSubmit={this.onFormSubmit}/>
+                <BookList books={this.state.books} />
             </div>
         )
     }

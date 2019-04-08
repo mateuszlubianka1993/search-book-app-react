@@ -1,5 +1,6 @@
 import React from 'react';
 import ListItem from './ListItem';
+import './BookList.css';
 
 const BookList = ({books}) => {
 
@@ -7,7 +8,11 @@ const BookList = ({books}) => {
         return <ListItem book={book} key={book.id} />
     });
 
-    return <div>{renderedList}</div>
+    return (
+        <div className="ui cards book-list">
+            {renderedList}
+        </div>
+    ); 
 };
 
 export default BookList;

@@ -41,9 +41,11 @@ class App extends React.Component {
     
     render () {
         return (
-            <div className="app-container">
+            <div className="app-container ui container">
                 <SearchBar onInputChange={this.onInputChange} onFormSubmit={this.onFormSubmit}/>
-                <BookList books={this.state.books} />
+                <div className="ui container">
+                    <BookList books={this.state.books} />
+                </div>  
             </div>
         )
     }

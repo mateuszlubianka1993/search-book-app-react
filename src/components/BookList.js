@@ -3,7 +3,7 @@ import ListItem from './ListItem';
 import './BookList.css';
 
 const BookList = ({books}) => {
-
+    
     const renderedList = books.map(book => {
         return <ListItem book={book} key={book.id} />
     });
@@ -13,6 +13,7 @@ const BookList = ({books}) => {
             {renderedList}
         </div>
     ); 
+    
 };
 
 export default BookList;

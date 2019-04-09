@@ -6,12 +6,10 @@ class App extends React.Component {
 
     state = {
         term: '',
-        books: [],
-        error: false,
+        books: []
     }
 
     onInputChange = (e) => {
-        console.log(e.target.value);
         this.setState({ term: e.target.value });
     };
 
@@ -24,19 +22,18 @@ class App extends React.Component {
           if(response.ok) {
             return response;
           }
-          throw Error('Something went wrong, try again')
+          throw Error('Something went wrong, try again');
         })
         .then(response => response.json())
         .then(result => {
           this.setState({
            books: result.items,
-           term: ''
+           term: '',
           });
         })
         .catch(err => {
-          this.setState({error: true})
+          console.log(err);
         })
-        console.log(this.state.books);
       }
     
     render () {
@@ -44,7 +41,10 @@ class App extends React.Component {
             <div className="app-container ui container">
                 <SearchBar onInputChange={this.onInputChange} onFormSubmit={this.onFormSubmit}/>
                 <div className="ui container">
-                    <BookList books={this.state.books} active={this.state.active} seeMore={this.seeMore}/>
+                    <BookList 
+                      books={this.state.books} 
+                      active={this.state.active}  
+                    />
                 </div>  
             </div>
         )

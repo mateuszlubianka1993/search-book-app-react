@@ -38,14 +38,13 @@ class App extends React.Component {
         })
         console.log(this.state.books);
       }
-
     
     render () {
         return (
             <div className="app-container ui container">
                 <SearchBar onInputChange={this.onInputChange} onFormSubmit={this.onFormSubmit}/>
                 <div className="ui container">
-                    <BookList books={this.state.books} />
+                    <BookList books={this.state.books} active={this.state.active} seeMore={this.seeMore}/>
                 </div>  
             </div>
         )

@@ -1,3 +1,8 @@
-.list-item {
-    
+.read-more {
+    overflow: visible;
+    height: auto;
+}
+.read-less {
+    overflow: hidden;
+    height: 100px;
 }

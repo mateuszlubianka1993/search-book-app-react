@@ -1,22 +1,33 @@
 import React from 'react';
-// import './ListItem.css';
+import './ListItem.css';
 
-const ListItem = ({book}) => {
-    return (
-        <div className="list-item card">
+class ListItem extends React.Component {
+    state = {active: false}
+
+    seeMore = () => {
+        this.setState({active: !this.state.active});
+      };
+
+    render() {
+        return (
+            <div className="list-item card">
             <div className="image">
-                <img src={book.volumeInfo.imageLinks.thumbnail} alt="book.volumeInfo.title" className="ui image"/>
+                <img src={this.props.book.volumeInfo.imageLinks.thumbnail} alt={this.props.book.volumeInfo.title} className="ui image"/>
             </div>
             <div className="content">
                 <div className="header">
-                    {book.volumeInfo.title}
+                    {this.props.book.volumeInfo.title}
                 </div>
                 <div className="description">
-                    {book.volumeInfo.description}
+                    <div className={this.state.active ? "read-more" : "read-less"}>
+                        {this.props.book.volumeInfo.description}
+                    </div>
+                    <button className="fluid ui button" onClick={this.seeMore}>{this.state.active ? 'See less' : 'See more'}</button>
                 </div>
             </div>
         </div>
-    );
+        )
+    }
 };
 
 export default ListItem;

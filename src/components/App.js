@@ -30,6 +30,7 @@ class App extends React.Component {
         .then(result => {
           this.setState({
            books: result.items,
+           term: ''
           });
         })
         .catch(err => {
